@@ -1,0 +1,68 @@
+<!doctype html>
+<head>
+<meta charset="utf-8">
+<title>{% block title %}{% endblock %}</title>
+
+<!-- meta -->
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- /meta -->
+
+</head>
+<body>
+
+  <!-- Wrap all page content here -->
+  <div>
+
+    <div>
+      <div>
+        <div>
+          <a href="/">home</a>
+        </div>
+        <div>
+          <ul>
+            {% if (request.endpoint == 'items') or
+              (request.endpoint == 'search_items') or
+              (request.endpoint == 'show_item') %}
+            <li>
+              <form method="post" action="/items/search">
+                {{ form.csrf_token }}
+                <input
+                  type="search"
+                  name="search_term"
+                  placeholder="Find an item"
+                  aria-label="Search"
+                >
+              </form>
+            </li>
+            {% endif %}
+          </ul>
+          <ul>
+            <li><a href="{{ url_for('items') }}">items</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- Begin page content -->
+    <main id="content" role="main">
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div>
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+      
+    </main>
+
+  </div>
+
+</body>
+</html>

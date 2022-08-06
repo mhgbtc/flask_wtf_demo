@@ -1,0 +1,22 @@
+{% extends 'layouts/main.html' %}
+{% block title %}{{ item.name }} | item{% endblock %}
+{% block content %}
+<div>
+	<div>
+		<h1>
+			{{ item.name }}
+		</h1>
+		<p>
+			ID: {{ item.id }}
+		</p>
+		<div>
+			{% for genre in item.properties %}
+			<span>{{ genre }}</span>
+			{% endfor %}
+		</div>
+</div>
+
+<a href="/items/{{ item.id }}/edit"><button>Edit</button></a>
+
+{% endblock %}
+

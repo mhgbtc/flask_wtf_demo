@@ -1,0 +1,20 @@
+{% extends 'layouts/main.html' %}
+{% block title %}New Item{% endblock %}
+{% block content %}
+  <div>
+    <form method="post" class="form">
+      {{ form.csrf_token }}
+      <h3>List a new item</h3>
+      <div>
+        <label for="name">name</label>
+        {{ form.name(class_ = 'form-control', autofocus = true) }}
+      </div>
+      <div>
+        <label for="properties">properties</label>
+        <small>Ctrl+Click to select multiple</small>
+        {{ form.properties(class_ = 'form-control', placeholder='properties, separated by commas', autofocus = true) }}
+      </div>
+      {{ form.submit(class="some_class") }}
+    </form>
+  </div>
+{% endblock %}
