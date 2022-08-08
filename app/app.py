@@ -1,6 +1,5 @@
 import sys
 from flask import (
-  abort,
   jsonify,
   render_template,
   request,
@@ -9,15 +8,10 @@ from flask import (
 )
 import logging
 from logging import Formatter, FileHandler
-from sqlalchemy import create_engine, text
-from sqlalchemy.orm import load_only
+from sqlalchemy import create_engine
 from forms import *
-from init import app, csrf
+from init import app
 from models import *
-from jinja_filters import format_datetime
-
-app.jinja_env.filters['datetime'] = format_datetime
-
 
 @app.route('/status')
 def status():
@@ -113,7 +107,7 @@ def edit_item_submission(item_id):
             return render_template('forms/edit_item.html', form=form)
     else:
         flash(form.errors)
-        return render_template('forms/edit_item.html', form=form)
+        return redirect(url_for('edit_item', item_id=item_id))
 
 
 @app.route('/items/create', methods=['GET'])

@@ -1,18 +1,12 @@
-from datetime import datetime
 import re
 from flask_wtf import FlaskForm
 from wtforms import (
     StringField,
-    SelectField,
     SelectMultipleField,
-    DateTimeField,
-    BooleanField,
     SubmitField
 )
 from wtforms.validators import (
     DataRequired,
-    URL,
-    optional,
     ValidationError
 )
 
@@ -43,7 +37,7 @@ def validate_property(form, property):
     for property in property.data:
         if property not in properties:
             raise ValidationError(
-                'This musical property is not allowed'
+                'This property is not allowed'
             )
 
 

@@ -1,8 +1,6 @@
 from datetime import datetime
-from sqlalchemy import ARRAY, Column, Integer, String
+from sqlalchemy import ARRAY, String
 from init import db
-from sqlalchemy.ext.hybrid import hybrid_property
-
 
 class Item(db.Model):
     __tablename__ = 'Item'
