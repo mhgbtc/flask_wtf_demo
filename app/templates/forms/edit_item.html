@@ -9,6 +9,11 @@
         <label for="name">name</label>
         {{ form.name(class_ = 'form-control', autofocus = true) }}
       </div>
+      <div>
+        <label for="some_url">some_url</label>
+        {{ form.some_url(autofocus = true) }}
+      </div>
+      <div>
         <label for="properties">properties</label>
         <small>Ctrl+Click to select multiple</small>
         {{ form.properties(class_ = 'form-control', placeholder='properties, separated by commas', autofocus = true) }}

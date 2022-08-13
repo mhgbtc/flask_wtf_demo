@@ -8,6 +8,7 @@ from wtforms import (
 )
 from wtforms.validators import (
     DataRequired,
+    URL,
     ValidationError
 )
 
@@ -45,6 +46,9 @@ class ItemForm(FlaskForm):
     name = StringField(
         'name', validators=[DataRequired()]
     )
+    some_url = StringField(
+        'some_url', validators=[DataRequired(), URL()]
+    )
     phone = TelField(
         'phone',
         validators=[validate_fr_phone, DataRequired()]
@@ -52,7 +56,7 @@ class ItemForm(FlaskForm):
     properties = SelectMultipleField(
         'properties', validators=[DataRequired(), validate_property],
         choices=properties_choices
-     )
+    )
     submit = SubmitField("Create Item")
 
 

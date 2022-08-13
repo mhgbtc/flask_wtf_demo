@@ -91,6 +91,7 @@ def edit_item_submission(item_id):
         try:
             item = Item.query.filter_by(id=item_id).first_or_404()
             item.name = form.name.data
+            item.some_url = form.some_url.data
             item.properties = form.properties.data
             item.phone = form.phone.data
             db.session.commit()
@@ -126,13 +127,14 @@ def create_item_submission():
             item = Item(
               name=form.name.data,
               properties=form.properties.data,
-              phone=form.phone.data
+              phone=form.phone.data,
+              some_url=form.some_url.data
             )
             db.session.add(item)
             db.session.commit()
-            # on successful db insert, flash success
-            flash('Item ' + item.name + ' was successfully listed!')
             db.session.close()
+            # on success flash success to user
+            flash('CRUD operation went well')
             return redirect(url_for("index"))
         except Exception as e:
             db.session.rollback()
