@@ -3,7 +3,8 @@ from flask_wtf import FlaskForm
 from wtforms import (
     StringField,
     SelectMultipleField,
-    SubmitField
+    SubmitField,
+    TelField
 )
 from wtforms.validators import (
     DataRequired,
@@ -11,21 +12,13 @@ from wtforms.validators import (
 )
 
 
-# example of a custom validator
-def validate_jamesbond(form, jamesbond):
-    jamebond_rule = '[a-zA-Z]+007$'
-    match = re.search(jamebond_rule, jamesbond.data)
+def validate_fr_phone(form, phone):
+    fr_phone_num = '^(\+33|0)[1-9](\d\d){4}$'
+    match = re.search(fr_phone_num, phone.data)
     if not match:
         raise ValidationError(
-            'Error, you are not 007'
+            'Error, phone number must be in format xxx-xxx-xxxx'
         )
-
-
-properties_choices = [
-    ('prop1', 'prop1'),
-    ('prop2', 'prop2'),
-    ('prop3', 'prop3'),
-]
 
 
 def validate_property(form, property):
@@ -41,9 +34,20 @@ def validate_property(form, property):
             )
 
 
+properties_choices = [
+    ('prop1', 'prop1'),
+    ('prop2', 'prop2'),
+    ('prop3', 'prop3'),
+]
+
+
 class ItemForm(FlaskForm):
     name = StringField(
         'name', validators=[DataRequired()]
+    )
+    phone = TelField(
+        'phone',
+        validators=[validate_fr_phone]
     )
     properties = SelectMultipleField(
         'properties', validators=[DataRequired(), validate_property],

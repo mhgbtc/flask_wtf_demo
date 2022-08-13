@@ -13,6 +13,7 @@ from forms import *
 from init import app
 from models import *
 
+
 @app.route('/status')
 def status():
     responseBody = {}
@@ -91,6 +92,7 @@ def edit_item_submission(item_id):
             item = Item.query.filter_by(id=item_id).first_or_404()
             item.name = form.name.data
             item.properties = form.properties.data
+            item.phone = form.phone.data
             db.session.commit()
             # on successful db insert, flash success
             flash('Item ' + item.name + ' was successfully updated!')
@@ -124,6 +126,7 @@ def create_item_submission():
             item = Item(
               name=form.name.data,
               properties=form.properties.data,
+              phone=form.phone.data
             )
             db.session.add(item)
             db.session.commit()

@@ -7,12 +7,16 @@
       <h3>List a new item</h3>
       <div>
         <label for="name">name</label>
-        {{ form.name(class_ = 'form-control', autofocus = true) }}
+        {{ form.name(autofocus = true) }}
       </div>
       <div>
         <label for="properties">properties</label>
         <small>Ctrl+Click to select multiple</small>
-        {{ form.properties(class_ = 'form-control', placeholder='properties, separated by commas', autofocus = true) }}
+        {{ form.properties(placeholder='properties, separated by commas', autofocus = true) }}
+      </div>
+      <div>
+        <label for="phone">phone</label>
+        {{ form.phone(autofocus = true) }}
       </div>
       {{ form.submit(class="some_class") }}
     </form>

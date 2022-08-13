@@ -13,6 +13,10 @@
         <small>Ctrl+Click to select multiple</small>
         {{ form.properties(class_ = 'form-control', placeholder='properties, separated by commas', autofocus = true) }}
       </div>
+      <div>
+        <label for="phone">phone</label>
+        {{ form.phone(autofocus = true) }}
+      </div>
       {{ form.submit(class="some_class") }}
     </form>
   </div>
