@@ -16,7 +16,7 @@
       </div>
       <div>
         <label for="phone">phone</label>
-        {{ form.phone(autofocus = true) }}
+        {{ form.phone(autofocus = true, placeholder='please enter your phone number', pattern='(\+33|0)[1-9](\d\d){4}') }}
       </div>
       {{ form.submit(class="some_class") }}
     </form>

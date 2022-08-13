@@ -47,7 +47,7 @@ class ItemForm(FlaskForm):
     )
     phone = TelField(
         'phone',
-        validators=[validate_fr_phone]
+        validators=[validate_fr_phone, DataRequired()]
     )
     properties = SelectMultipleField(
         'properties', validators=[DataRequired(), validate_property],
